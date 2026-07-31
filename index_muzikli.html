@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070816">
+
+  <title>Harun ❤️ Asya</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(122, 80, 255, 0.30), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(255, 68, 139, 0.24), transparent 28%),
+        linear-gradient(160deg, #050611, #0b1025 55%, #14091d);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .stars,
+    .stars::before,
+    .stars::after {
+      position: fixed;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.5px);
+      background-size: 45px 45px;
+      z-index: 0;
+    }
+
+    .stars {
+      opacity: 0.42;
+      animation: starsMove 28s linear infinite;
+    }
+
+    .stars::before {
+      opacity: 0.26;
+      background-size: 75px 75px;
+      animation: starsMove 42s linear infinite;
+    }
+
+    .stars::after {
+      opacity: 0.16;
+      background-size: 110px 110px;
+      animation: starsMove 60s linear infinite;
+    }
+
+    @keyframes starsMove {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(100px);
+      }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    #loginScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #loginScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .login-card {
+      width: min(100%, 430px);
+      padding: 38px 25px 28px;
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      font-size: 31px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .login-card h1 {
+      font-size: clamp(32px, 9vw, 45px);
+      letter-spacing: -1.8px;
+      margin-bottom: 10px;
+    }
+
+    .login-card p {
+      margin-bottom: 26px;
+      color: rgba(255, 255, 255, 0.73);
+      line-height: 1.55;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    #passwordInput {
+      width: 100%;
+      padding: 17px 52px 17px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 17px;
+      outline: none;
+      color: white;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    #passwordInput::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    #passwordInput:focus {
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+    }
+
+    .show-password {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .main-button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px;
+      border: 0;
+      border-radius: 17px;
+      cursor: pointer;
+      font-weight: 700;
+      color: #171321;
+      background: linear-gradient(135deg, #ffffff, #eadfff);
+    }
+
+    #errorText {
+      min-height: 22px;
+      margin-top: 13px;
+      font-size: 14px;
+      color: #ff9cac;
+    }
+
+    #mainContent {
+      position: relative;
+      z-index: 5;
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #mainContent.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+    }
+
+    .mini-label {
+      display: inline-block;
+      margin-bottom: 21px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 13px;
+      letter-spacing: 0.7px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 15vw, 105px);
+      line-height: 0.93;
+      letter-spacing: -5px;
+      text-shadow: 0 10px 55px rgba(255, 77, 148, 0.25);
+    }
+
+    .hero h1 span {
+      display: block;
+      margin-top: 13px;
+      font-size: 0.56em;
+      letter-spacing: -2px;
+      background: linear-gradient(90deg, #ff9fc6, #ffffff, #c3acff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 28px auto 0;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .scroll-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .section {
+      width: min(92%, 830px);
+      margin: 0 auto 28px;
+      padding: 28px;
+      border-radius: 28px;
+    }
+
+    .section-title {
+      margin-bottom: 18px;
+      font-size: 26px;
+      letter-spacing: -0.8px;
+    }
+
+    .letter {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .letter p + p {
+      margin-top: 17px;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .memory {
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.52)),
+        linear-gradient(135deg, rgba(255, 100, 160, 0.3), rgba(109, 92, 255, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .memory strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .memory span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .heart-button {
+      display: block;
+      width: min(92%, 430px);
+      margin: 35px auto 18px;
+      padding: 18px;
+      border: 0;
+      border-radius: 20px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ec4d90, #8768ff);
+      box-shadow: 0 16px 50px rgba(224, 61, 135, 0.3);
+    }
+
+    .final-message {
+      display: none;
+      width: min(92%, 700px);
+      margin: 0 auto 30px;
+      padding: 30px;
+      border-radius: 27px;
+      text-align: center;
+      animation: reveal 0.7s ease both;
+    }
+
+    .final-message.show {
+      display: block;
+    }
+
+    .final-message h2 {
+      margin-bottom: 13px;
+      font-size: 30px;
+    }
+
+    .final-message p {
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 45px 20px 38px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.46);
+      font-size: 13px;
+    }
+
+    .floating-heart {
+      position: fixed;
+      z-index: 100;
+      pointer-events: none;
+      animation: floatHeart 2.7s ease-out forwards;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(0.5) rotate(0);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-230px) scale(1.5) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    .gallery-intro {
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+      margin: -5px 0 20px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1 / 1.18;
+      overflow: hidden;
+      border: 0;
+      border-radius: 18px;
+      padding: 0;
+      cursor: pointer;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .45s ease, filter .45s ease;
+    }
+
+    .gallery-item:active img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item::after {
+      content: "❤️";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      font-size: 17px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: .3s ease;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,.55));
+    }
+
+    .gallery-item:hover::after,
+    .gallery-item:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(3,4,12,.92);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .lightbox.show {
+      display: flex;
+      animation: reveal .3s ease both;
+    }
+
+    .lightbox img {
+      max-width: min(94vw, 900px);
+      max-height: 82vh;
+      border-radius: 22px;
+      object-fit: contain;
+      box-shadow: 0 25px 80px rgba(0,0,0,.65);
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: fixed;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      color: white;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+    }
+
+    .lightbox-close {
+      top: 18px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 25px;
+    }
+
+    .lightbox-nav {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 58px;
+      border-radius: 16px;
+      font-size: 28px;
+    }
+
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+
+    .lightbox-count {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 23px 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars"></div>
+
+  <section id="loginScreen">
+    <div class="login-card glass">
+
+      <div class="lock-icon">🔐</div>
+
+      <h1>Harun ❤️ Asya</h1>
+
+      <p>
+        Bu sayfa yalnızca iki kalp için hazırlandı.
+        Kalbinizdeki şifreyi girin.
+      </p>
+
+      <div class="password-wrap">
+        <input
+          id="passwordInput"
+          type="password"
+          placeholder="Şifre"
+          autocomplete="off"
+        >
+
+        <button
+          class="show-password"
+          type="button"
+          onclick="togglePassword()"
+        >
+          👁️
+        </button>
+      </div>
+
+      <button class="main-button" onclick="login()">
+        Kalbimizin Kapısını Aç
+      </button>
+
+      <div id="errorText"></div>
+
+    </div>
+  </section>
+
+  <main id="mainContent">
+
+    <section class="hero">
+      <div class="hero-inner">
+
+        <div class="mini-label">
+           SADECE İKİMİZ
+        </div>
+
+        <h1>
+          Harun
+          <span>❤️ Asya</span>
+        </h1>
+
+        <p class="hero-text">
+          Bazen bir insan bütün hayatının anlamını değiştirir.
+          Benim için o insan sensin Sevgilim.
+          Her şey seninle daha güzel, daha anlamlı ve daha gerçek.
+        </p>
+
+        <a class="scroll-button" href="#mektup">
+          Hikâyemize Dokun ↓
+        </a>
+
+      </div>
+    </section>
+
+    <section id="mektup" class="section glass">
+
+      <h2 class="section-title">
+        Sana Bir Mektubum Var 💌
+      </h2>
+
+      <div class="letter">
+
+        <p>
+          SEVGİLİM ASYAM ,
+        </p>
+
+        <p>
+          Sana ne kadar baktığımı belki fark etmiyorsundur.
+          Ama ben seni her gördüğümde yeniden hayran oluyorum.
+        </p>
+
+        <p>
+          Gözlerine baktığımda bütün günün yorgunluğu bir anda kayboluyor.
+          O gözlerin bana huzur veriyor; sanki dünyanın en güvenli yerine
+          bakıyormuşum gibi hissediyorum.
+        </p>
+
+        <p>
+          Saçların... Rüzgârda savrulduğunda bile dakikalarca izleyebilirim.
+          Sana sarıldığımda saçlarının kokusunu içime çekmek bana dünyadaki
+          en güzel koku gibi geliyor. O an zaman dursa hiç şikâyet etmem.
+        </p>
+
+        <p>
+          Gülüşün... Belki sen sıradan bir gülüş sanıyorsun ama benim için
+          günümü güzelleştiren en özel şeylerden biri. Ne zaman gülsen,
+          ben de istemeden gülümsüyorum.
+        </p>
+
+        <p>
+          Bazen seni izlerken kendi kendime
+          “Nasıl bu kadar güzel olabiliyor?” diye düşünüyorum.
+          Ama sonra şunu fark ediyorum: Seni güzel yapan sadece yüzün değil.
+          Kalbin, merhametin ve bana hissettirdiklerin...
+          İşte beni sana her gün yeniden âşık eden bunlar.
+        </p>
+
+        <p>
+          Sana her gün “Seni seviyorum.” desem bile içimdeki sevgiyi
+          tam anlatamam. Çünkü bu sevgi kelimelerden daha büyük.
+          Sen benim en güzel rastlantım, en huzurlu yerim
+          ve en değerli hikâyemsin.
+        </p>
+
+        <p>
+          Ne olursa olsun, seni sevmekten vazgeçmeyeceğim.
+        </p>
+
+        <p>
+          <strong>
+            Seni her geçen gün ilk günden daha çok seven...
+          </strong>
+        </p>
+
+        <p>
+          <strong>Harun ❤️</strong>
+        </p>
+
+      </div>
+    </section>
+
+    <section class="section glass">
+
+      <h2 class="section-title">
+        Bizden Küçük Parçalar ✨
+      </h2>
+
+      <div class="memory-grid">
+
+        <div class="memory">
+          <strong>İlk Günler</strong>
+          <span>
+            Adını koyamadığımız ama kalbimizin çoktan bildiği zamanlar.
+          </span>
+        </div>
+
+        <div class="memory">
+          <strong>Uzun Yollar</strong>
+          <span>
+            Mesafelerin hiçbir zaman sevgimizden daha büyük olmadığı anlar.
+          </span>
+        </div>
+
+        <div class="memory">
+          <strong>Küçük Mutluluklar</strong>
+          <span>
+            Bir görüşmenin, bir sarılmanın ve tek bir gülümsemenin değeri.
+          </span>
+        </div>
+
+        <div class="memory">
+          <strong>Geleceğimiz</strong>
+          <span>
+            Birlikte emek vereceğimiz, güleceğimiz ve büyüyeceğimiz günler.
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section glass" id="galeri">
+      <h2 class="section-title">Anılarımız 📸</h2>
+      <p class="gallery-intro">
+        Her karede başka bir gülüş, başka bir yol ve sadece bize ait bir an var.
+        Fotoğraflara dokun; anılarımızı birlikte gez.
+      </p>
+      <div id="galleryGrid" class="gallery-grid"></div>
+    </section>
+
+    <button class="heart-button" onclick="openSurprise(event)">
+      Kalbime Dokun ❤️
+    </button>
+
+    <section id="finalMessage" class="final-message glass">
+
+      <h2>
+        Dünyada milyarlarca insan vardı…
+      </h2>
+
+      <p>
+        Ama benim kalbim seni seçti.
+        Nerede olursam olayım, ne yaşarsak yaşayalım,
+        seni çok sevdiğimi ve benim için ne kadar kıymetli
+        olduğunu hiçbir zaman unutma.
+      </p>
+
+    </section>
+
+    <footer>
+      Harun tarafından Asya için sevgiyle hazırlandı · 2026 ❤️
+    </footer>
+
+<audio id="bgMusic" preload="auto">
+  <source src="mp3indirdur-Yalin-Ki-Sen.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn" class="heart-button" style="margin-top:10px;" onclick="toggleMusic()">🎵 Bizim Şarkımızı Çal</button>
+
+
+  </main>
+
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Kapat">×</button>
+    <button class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)" aria-label="Önceki fotoğraf">‹</button>
+    <img id="lightboxImage" src="" alt="Harun ve Asya anısı">
+    <button class="lightbox-nav lightbox-next" onclick="changePhoto(1)" aria-label="Sonraki fotoğraf">›</button>
+    <div id="lightboxCount" class="lightbox-count"></div>
+  </div>
+
+  <script>
+
+    const galleryPhotos = [
+      "57eb2dc5-16c8-4adc-8fe3-a291d5b00a91.jpeg",
+      "5e3d216d-2256-4a27-93ff-17307450bd7f.jpeg",
+      "68969321-6c14-47ed-b19a-b21a90ceff73.jpeg",
+      "807361c9-8278-411d-943d-d76d65c1c167.jpeg",
+      "861a91e5-0dcc-4763-a9ac-c85b568ba0ab.jpeg",
+      "97224b77-b3bb-4c0a-844a-cbf4a1f05e8b.jpeg",
+      "FullSizeRender.jpeg",
+      "IMG_0001.jpeg",
+      "IMG_0002.jpeg",
+      "IMG_0003.jpeg",
+      "IMG_0004.jpeg",
+      "IMG_0005.jpeg",
+      "IMG_0027.jpeg",
+      "IMG_0199.jpeg",
+      "IMG_0237.jpeg",
+      "IMG_0243.jpeg",
+      "IMG_0246.jpeg",
+      "IMG_0256.jpeg",
+      "IMG_0258.jpeg",
+      "IMG_0260.jpeg",
+      "IMG_0268.jpeg",
+      "IMG_0581.jpeg",
+      "IMG_0692.jpeg",
+      "IMG_0698.jpeg",
+      "IMG_8313.jpeg",
+      "IMG_8362.jpeg",
+      "IMG_8365.jpeg",
+      "IMG_8367.jpeg",
+      "IMG_9512.jpeg",
+      "IMG_9514.jpeg",
+      "IMG_9524.jpeg",
+      "IMG_9528.jpeg",
+      "IMG_9534.jpeg",
+      "IMG_9535.jpeg",
+      "IMG_9545.jpeg",
+      "IMG_9552.jpeg",
+      "IMG_9664.jpeg",
+      "IMG_9687.jpeg",
+      "IMG_9692.jpeg",
+      "IMG_9706.jpeg",
+      "IMG_9713.jpeg",
+      "IMG_9720.jpeg",
+      "IMG_9724.jpeg",
+      "IMG_9751.jpeg",
+      "IMG_9795.jpeg",
+      "IMG_9799.jpeg",
+      "a0c8c171-4661-402c-b249-33ebaed7644b.jpeg",
+      "b989f720-d9bf-4259-a5e4-8df947e886fe.jpeg",
+      "d2bea3c4-ad29-465a-baa6-b84f25d70e3d.jpeg",
+      "d4aa2fe8-5c3d-4931-b049-847eaa4f5795.jpeg",
+      "ec582221-5282-4360-8deb-a2000ab358f3.jpeg",
+      "f021246c-b0f1-4a36-983d-66ef646f239e.jpeg",
+      "fbc43ef5-3630-43d8-b75b-7cba0b5f6484.jpeg"
+    ];
+
+    const galleryGrid = document.getElementById("galleryGrid");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCount = document.getElementById("lightboxCount");
+    let activePhoto = 0;
+
+    function buildGallery() {
+      galleryPhotos.forEach((file, index) => {
+        const button = document.createElement("button");
+        button.className = "gallery-item";
+        button.type = "button";
+        button.setAttribute("aria-label", `Fotoğraf ${index + 1}`);
+        button.onclick = () => openLightbox(index);
+
+        const img = document.createElement("img");
+        img.src = encodeURI(file);
+        img.alt = `Harun ve Asya anısı ${index + 1}`;
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        button.appendChild(img);
+        galleryGrid.appendChild(button);
+      });
+    }
+
+    function openLightbox(index) {
+      activePhoto = index;
+      updateLightbox();
+      lightbox.classList.add("show");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function changePhoto(direction) {
+      activePhoto = (activePhoto + direction + galleryPhotos.length) % galleryPhotos.length;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      lightboxImage.src = encodeURI(galleryPhotos[activePhoto]);
+      lightboxCount.textContent = `${activePhoto + 1} / ${galleryPhotos.length}`;
+    }
+
+    lightbox.addEventListener("click", function(event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (!lightbox.classList.contains("show")) return;
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") changePhoto(-1);
+      if (event.key === "ArrowRight") changePhoto(1);
+    });
+
+    let touchStartX = 0;
+    lightbox.addEventListener("touchstart", event => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, {passive:true});
+
+    lightbox.addEventListener("touchend", event => {
+      const delta = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(delta) > 45) changePhoto(delta > 0 ? -1 : 1);
+    }, {passive:true});
+
+    buildGallery();
+
+    const SITE_PASSWORD = "0304";
+
+    const loginScreen = document.getElementById("loginScreen");
+    const mainContent = document.getElementById("mainContent");
+    const passwordInput = document.getElementById("passwordInput");
+    const errorText = document.getElementById("errorText");
+    const finalMessage = document.getElementById("finalMessage");
+
+    function login() {
+      const enteredPassword = passwordInput.value.trim();
+
+      if (enteredPassword === SITE_PASSWORD) {
+        errorText.textContent = "";
+        loginScreen.classList.add("hidden");
+
+        setTimeout(() => {
+          mainContent.classList.add("visible");
+
+          createHearts(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            16
+          );
+        }, 500);
+
+      } else {
+        errorText.textContent =
+          "Şifre yanlış. Kalbinizin bildiği cevabı dene ❤️";
+
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    }
+
+    function togglePassword() {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+
+    passwordInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        login();
+      }
+    });
+
+    function openSurprise(event) {
+      finalMessage.classList.add("show");
+
+      finalMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      createHearts(event.clientX, event.clientY, 22);
+    }
+
+    function createHearts(x, y, amount) {
+      const hearts = ["❤️", "💗", "💕", "💖", "🤍"];
+
+      for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.textContent =
+          hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left =
+          (x + Math.random() * 130 - 65) + "px";
+
+        heart.style.top =
+          (y + Math.random() * 70 - 35) + "px";
+
+        heart.style.fontSize =
+          (15 + Math.random() * 21) + "px";
+
+        heart.style.animationDelay =
+          (Math.random() * 0.35) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 3200);
+      }
+    }
+  </script>
+
+
+<script>
+const bgMusic=document.getElementById('bgMusic');
+const musicBtn=document.getElementById('musicBtn');
+function toggleMusic(){
+ if(bgMusic.paused){
+   bgMusic.play();
+   musicBtn.textContent='⏸️ Müziği Durdur';
+ }else{
+   bgMusic.pause();
+   musicBtn.textContent='🎵 Bizim Şarkımızı Çal';
+ }
+}
+</script>
+
+</body>
+</html>
