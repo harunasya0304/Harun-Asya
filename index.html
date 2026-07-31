@@ -21,12 +21,11 @@
     body {
       min-height: 100vh;
       overflow-x: hidden;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 20% 20%, rgba(122, 80, 255, 0.28), transparent 32%),
-        radial-gradient(circle at 80% 10%, rgba(255, 68, 139, 0.22), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(122, 80, 255, 0.30), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(255, 68, 139, 0.24), transparent 28%),
         linear-gradient(160deg, #050611, #0b1025 55%, #14091d);
     }
 
@@ -43,39 +42,42 @@
       content: "";
       pointer-events: none;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px);
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.5px);
       background-size: 45px 45px;
       z-index: 0;
     }
 
     .stars {
-      opacity: .42;
+      opacity: 0.42;
       animation: starsMove 28s linear infinite;
     }
 
     .stars::before {
-      opacity: .28;
+      opacity: 0.26;
       background-size: 75px 75px;
-      transform: translateY(-30px);
       animation: starsMove 42s linear infinite;
     }
 
     .stars::after {
-      opacity: .18;
+      opacity: 0.16;
       background-size: 110px 110px;
-      transform: translateX(20px);
       animation: starsMove 60s linear infinite;
     }
 
     @keyframes starsMove {
-      from { transform: translateY(0); }
-      to { transform: translateY(90px); }
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(100px);
+      }
     }
 
     .glass {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: 0 22px 70px rgba(0,0,0,.4);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
     }
@@ -87,7 +89,7 @@
       display: grid;
       place-items: center;
       padding: 24px;
-      transition: opacity .8s ease, visibility .8s ease;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
     #loginScreen.hidden {
@@ -97,7 +99,7 @@
 
     .login-card {
       width: min(100%, 430px);
-      padding: 38px 25px 27px;
+      padding: 38px 25px 28px;
       border-radius: 30px;
       text-align: center;
     }
@@ -110,8 +112,8 @@
       margin: 0 auto 22px;
       border-radius: 50%;
       font-size: 31px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     .login-card h1 {
@@ -121,8 +123,8 @@
     }
 
     .login-card p {
-      margin-bottom: 27px;
-      color: rgba(255,255,255,.73);
+      margin-bottom: 26px;
+      color: rgba(255, 255, 255, 0.73);
       line-height: 1.55;
     }
 
@@ -133,21 +135,20 @@
     #passwordInput {
       width: 100%;
       padding: 17px 52px 17px 18px;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 17px;
       outline: none;
       color: white;
-      background: rgba(255,255,255,.09);
-      transition: .25s;
+      background: rgba(255, 255, 255, 0.09);
     }
 
     #passwordInput::placeholder {
-      color: rgba(255,255,255,.5);
+      color: rgba(255, 255, 255, 0.5);
     }
 
     #passwordInput:focus {
-      border-color: rgba(255,255,255,.48);
-      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
     }
 
     .show-password {
@@ -157,9 +158,9 @@
       transform: translateY(-50%);
       border: 0;
       background: transparent;
-      cursor: pointer;
       color: white;
       font-size: 20px;
+      cursor: pointer;
     }
 
     .main-button {
@@ -171,16 +172,11 @@
       cursor: pointer;
       font-weight: 700;
       color: #171321;
-      background: linear-gradient(135deg, #ffffff, #e9dfff);
-      transition: transform .25s, box-shadow .25s;
-    }
-
-    .main-button:active {
-      transform: scale(.97);
+      background: linear-gradient(135deg, #ffffff, #eadfff);
     }
 
     #errorText {
-      height: 22px;
+      min-height: 22px;
       margin-top: 13px;
       font-size: 14px;
       color: #ff9cac;
@@ -216,24 +212,24 @@
       margin-bottom: 21px;
       padding: 9px 15px;
       border-radius: 999px;
-      color: rgba(255,255,255,.82);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 13px;
-      letter-spacing: .7px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
+      letter-spacing: 0.7px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .hero h1 {
       font-size: clamp(55px, 15vw, 105px);
-      line-height: .93;
+      line-height: 0.93;
       letter-spacing: -5px;
-      text-shadow: 0 10px 55px rgba(255, 77, 148, .25);
+      text-shadow: 0 10px 55px rgba(255, 77, 148, 0.25);
     }
 
     .hero h1 span {
       display: block;
       margin-top: 13px;
-      font-size: .56em;
+      font-size: 0.56em;
       letter-spacing: -2px;
       background: linear-gradient(90deg, #ff9fc6, #ffffff, #c3acff);
       -webkit-background-clip: text;
@@ -244,7 +240,7 @@
     .hero-text {
       max-width: 620px;
       margin: 28px auto 0;
-      color: rgba(255,255,255,.72);
+      color: rgba(255, 255, 255, 0.72);
       line-height: 1.8;
       font-size: 17px;
     }
@@ -256,8 +252,8 @@
       border-radius: 999px;
       color: white;
       text-decoration: none;
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .section {
@@ -270,11 +266,11 @@
     .section-title {
       margin-bottom: 18px;
       font-size: 26px;
-      letter-spacing: -.8px;
+      letter-spacing: -0.8px;
     }
 
     .letter {
-      color: rgba(255,255,255,.78);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 16px;
       line-height: 1.9;
     }
@@ -297,9 +293,9 @@
       padding: 20px;
       border-radius: 22px;
       background:
-        linear-gradient(180deg, transparent, rgba(0,0,0,.52)),
-        linear-gradient(135deg, rgba(255,100,160,.3), rgba(109,92,255,.3));
-      border: 1px solid rgba(255,255,255,.12);
+        linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.52)),
+        linear-gradient(135deg, rgba(255, 100, 160, 0.3), rgba(109, 92, 255, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .memory strong {
@@ -309,7 +305,7 @@
     }
 
     .memory span {
-      color: rgba(255,255,255,.68);
+      color: rgba(255, 255, 255, 0.68);
       font-size: 14px;
       line-height: 1.5;
     }
@@ -325,7 +321,7 @@
       font-weight: 700;
       cursor: pointer;
       background: linear-gradient(135deg, #ec4d90, #8768ff);
-      box-shadow: 0 16px 50px rgba(224,61,135,.3);
+      box-shadow: 0 16px 50px rgba(224, 61, 135, 0.3);
     }
 
     .final-message {
@@ -335,7 +331,7 @@
       padding: 30px;
       border-radius: 27px;
       text-align: center;
-      animation: reveal .7s ease both;
+      animation: reveal 0.7s ease both;
     }
 
     .final-message.show {
@@ -348,14 +344,14 @@
     }
 
     .final-message p {
-      color: rgba(255,255,255,.75);
+      color: rgba(255, 255, 255, 0.76);
       line-height: 1.75;
     }
 
     footer {
       padding: 45px 20px 38px;
       text-align: center;
-      color: rgba(255,255,255,.46);
+      color: rgba(255, 255, 255, 0.46);
       font-size: 13px;
     }
 
@@ -368,12 +364,14 @@
 
     @keyframes floatHeart {
       0% {
-        transform: translateY(0) scale(.5) rotate(0);
+        transform: translateY(0) scale(0.5) rotate(0);
         opacity: 0;
       }
+
       15% {
         opacity: 1;
       }
+
       100% {
         transform: translateY(-230px) scale(1.5) rotate(25deg);
         opacity: 0;
@@ -383,8 +381,9 @@
     @keyframes reveal {
       from {
         opacity: 0;
-        transform: translateY(20px) scale(.97);
+        transform: translateY(20px) scale(0.97);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -413,6 +412,7 @@
 
   <section id="loginScreen">
     <div class="login-card glass">
+
       <div class="lock-icon">🔐</div>
 
       <h1>Harun ❤️ Asya</h1>
@@ -434,7 +434,6 @@
           class="show-password"
           type="button"
           onclick="togglePassword()"
-          aria-label="Şifreyi göster"
         >
           👁️
         </button>
@@ -445,6 +444,7 @@
       </button>
 
       <div id="errorText"></div>
+
     </div>
   </section>
 
@@ -452,7 +452,10 @@
 
     <section class="hero">
       <div class="hero-inner">
-        <div class="mini-label">PROJECT ASYA · SADECE İKİMİZ</div>
+
+        <div class="mini-label">
+          PROJECT ASYA · SADECE İKİMİZ
+        </div>
 
         <h1>
           Harun
@@ -461,57 +464,92 @@
 
         <p class="hero-text">
           Bazen bir insan bütün hayatının anlamını değiştirir.
-          Benim için o insan sensin, Asya.
+          Benim için o insan sensin Asya.
           Her şey seninle daha güzel, daha anlamlı ve daha gerçek.
         </p>
 
         <a class="scroll-button" href="#mektup">
           Hikâyemize Dokun ↓
         </a>
+
       </div>
     </section>
 
     <section id="mektup" class="section glass">
-      <h2 class="section-title">Sana Bir Mektubum Var 💌</h2>
+
+      <h2 class="section-title">
+        Sana Bir Mektubum Var 💌
+      </h2>
 
       <div class="letter">
+
         <p>
           Güzelim Asya,
         </p>
 
         <p>
-          Bazen seni ne kadar sevdiğimi cümlelere sığdırmakta
-          zorlanıyorum. Seni özlediğim zamanlarda bunu yanlış
-          yansıtabilirim ama bilmeni isterim ki kalbimdeki yerin
-          her zaman aynı: Çok özel ve çok kıymetli.
+          Sana ne kadar baktığımı belki fark etmiyorsundur.
+          Ama ben seni her gördüğümde yeniden hayran oluyorum.
         </p>
 
         <p>
-          Henüz arkadaşken bile senin iyi olmanı, güvende olmanı
-          ve yüzünün gülmesini istiyordum. Bugün ise seni
-          tanıdıkça sevgim daha da büyüyor.
+          Gözlerine baktığımda bütün günün yorgunluğu bir anda kayboluyor.
+          O gözlerin bana huzur veriyor; sanki dünyanın en güvenli yerine
+          bakıyormuşum gibi hissediyorum.
         </p>
 
         <p>
-          Sana kusursuz bir hayat vaat etmiyorum. Ama seninle
-          birlikte emek vereceğim, mücadele edeceğim ve hayatın
-          güzel anlarını da zor anlarını da paylaşacağım.
+          Saçların... Rüzgârda savrulduğunda bile dakikalarca izleyebilirim.
+          Sana sarıldığımda saçlarının kokusunu içime çekmek bana dünyadaki
+          en güzel koku gibi geliyor. O an zaman dursa hiç şikâyet etmem.
         </p>
 
         <p>
-          İyi ki varsın. Seni çok seviyorum.
+          Gülüşün... Belki sen sıradan bir gülüş sanıyorsun ama benim için
+          günümü güzelleştiren en özel şeylerden biri. Ne zaman gülsen,
+          ben de istemeden gülümsüyorum.
+        </p>
+
+        <p>
+          Bazen seni izlerken kendi kendime
+          “Nasıl bu kadar güzel olabiliyor?” diye düşünüyorum.
+          Ama sonra şunu fark ediyorum: Seni güzel yapan sadece yüzün değil.
+          Kalbin, merhametin ve bana hissettirdiklerin...
+          İşte beni sana her gün yeniden âşık eden bunlar.
+        </p>
+
+        <p>
+          Sana her gün “Seni seviyorum.” desem bile içimdeki sevgiyi
+          tam anlatamam. Çünkü bu sevgi kelimelerden daha büyük.
+          Sen benim en güzel rastlantım, en huzurlu yerim
+          ve en değerli hikâyemsin.
+        </p>
+
+        <p>
+          Ne olursa olsun, seni sevmekten vazgeçmeyeceğim.
+        </p>
+
+        <p>
+          <strong>
+            Seni her geçen gün ilk günden daha çok seven...
+          </strong>
         </p>
 
         <p>
           <strong>Harun ❤️</strong>
         </p>
+
       </div>
     </section>
 
     <section class="section glass">
-      <h2 class="section-title">Bizden Küçük Parçalar ✨</h2>
+
+      <h2 class="section-title">
+        Bizden Küçük Parçalar ✨
+      </h2>
 
       <div class="memory-grid">
+
         <div class="memory">
           <strong>İlk Günler</strong>
           <span>
@@ -529,7 +567,7 @@
         <div class="memory">
           <strong>Küçük Mutluluklar</strong>
           <span>
-            Bir kahvenin, kısa bir görüşmenin ve tek bir gülümsemenin değeri.
+            Bir görüşmenin, bir sarılmanın ve tek bir gülümsemenin değeri.
           </span>
         </div>
 
@@ -539,6 +577,7 @@
             Birlikte emek vereceğimiz, güleceğimiz ve büyüyeceğimiz günler.
           </span>
         </div>
+
       </div>
     </section>
 
@@ -547,13 +586,18 @@
     </button>
 
     <section id="finalMessage" class="final-message glass">
-      <h2>Dünyada milyarlarca insan vardı…</h2>
+
+      <h2>
+        Dünyada milyarlarca insan vardı…
+      </h2>
 
       <p>
         Ama benim kalbim seni seçti.
         Nerede olursam olayım, ne yaşarsak yaşayalım,
-        seni çok sevdiğimi ve benim için çok kıymetli olduğunu unutma.
+        seni çok sevdiğimi ve benim için ne kadar kıymetli
+        olduğunu hiçbir zaman unutma.
       </p>
+
     </section>
 
     <footer>
@@ -580,18 +624,29 @@
 
         setTimeout(() => {
           mainContent.classList.add("visible");
-          createHearts(window.innerWidth / 2, window.innerHeight / 2, 16);
+
+          createHearts(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            16
+          );
         }, 500);
+
       } else {
-        errorText.textContent = "Şifre yanlış. Kalbinizin bildiği cevabı dene ❤️";
+        errorText.textContent =
+          "Şifre yanlış. Kalbinizin bildiği cevabı dene ❤️";
+
         passwordInput.value = "";
         passwordInput.focus();
       }
     }
 
     function togglePassword() {
-      passwordInput.type =
-        passwordInput.type === "password" ? "text" : "password";
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
     }
 
     passwordInput.addEventListener("keydown", function(event) {
@@ -602,6 +657,7 @@
 
     function openSurprise(event) {
       finalMessage.classList.add("show");
+
       finalMessage.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -615,13 +671,23 @@
 
       for (let i = 0; i < amount; i++) {
         const heart = document.createElement("div");
-        heart.className = "floating-heart";
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
 
-        heart.style.left = (x + Math.random() * 130 - 65) + "px";
-        heart.style.top = (y + Math.random() * 70 - 35) + "px";
-        heart.style.fontSize = (15 + Math.random() * 21) + "px";
-        heart.style.animationDelay = (Math.random() * .35) + "s";
+        heart.className = "floating-heart";
+
+        heart.textContent =
+          hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left =
+          (x + Math.random() * 130 - 65) + "px";
+
+        heart.style.top =
+          (y + Math.random() * 70 - 35) + "px";
+
+        heart.style.fontSize =
+          (15 + Math.random() * 21) + "px";
+
+        heart.style.animationDelay =
+          (Math.random() * 0.35) + "s";
 
         document.body.appendChild(heart);
 
